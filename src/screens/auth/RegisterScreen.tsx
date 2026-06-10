@@ -26,6 +26,8 @@ export default function RegisterScreen({ navigation }: any) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [securePassword, setSecurePassword] = useState(true);
+  const [secureConfirmPassword, setSecureConfirmPassword] = useState(true);
 
   const handleRegister = async () => {
     if (!email || !password || !confirmPassword) {
@@ -107,34 +109,58 @@ export default function RegisterScreen({ navigation }: any) {
 
                 <View style={styles.inputGroup}>
                   <Text style={[typography.label, { color: colors.text }]}>Contraseña</Text>
-                  <TextInput
-                    style={[styles.input, { color: colors.text, borderColor: colors.border, backgroundColor: colors.surface }]}
-                    placeholder="Mínimo 6 caracteres"
-                    placeholderTextColor={colors.textDisabled}
-                    value={password}
-                    onChangeText={(text) => {
-                      setPassword(text);
-                      setError(null);
-                    }}
-                    secureTextEntry
-                    editable={!isLoading}
-                  />
+                  <View style={[styles.inputContainer, { borderColor: colors.border, backgroundColor: colors.surface }]}>
+                    <TextInput
+                      style={[styles.inputField, { color: colors.text }]}
+                      placeholder="Mínimo 6 caracteres"
+                      placeholderTextColor={colors.textDisabled}
+                      value={password}
+                      onChangeText={(text) => {
+                        setPassword(text);
+                        setError(null);
+                      }}
+                      secureTextEntry={securePassword}
+                      editable={!isLoading}
+                    />
+                    <TouchableOpacity 
+                      style={styles.eyeButton}
+                      onPress={() => setSecurePassword(prev => !prev)}
+                    >
+                      <Ionicons 
+                        name={securePassword ? "eye-off-outline" : "eye-outline"} 
+                        size={22} 
+                        color={colors.textSecondary} 
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
 
                 <View style={styles.inputGroup}>
                   <Text style={[typography.label, { color: colors.text }]}>Confirmar Contraseña</Text>
-                  <TextInput
-                    style={[styles.input, { color: colors.text, borderColor: colors.border, backgroundColor: colors.surface }]}
-                    placeholder="Repite la contraseña"
-                    placeholderTextColor={colors.textDisabled}
-                    value={confirmPassword}
-                    onChangeText={(text) => {
-                      setConfirmPassword(text);
-                      setError(null);
-                    }}
-                    secureTextEntry
-                    editable={!isLoading}
-                  />
+                  <View style={[styles.inputContainer, { borderColor: colors.border, backgroundColor: colors.surface }]}>
+                    <TextInput
+                      style={[styles.inputField, { color: colors.text }]}
+                      placeholder="Repite la contraseña"
+                      placeholderTextColor={colors.textDisabled}
+                      value={confirmPassword}
+                      onChangeText={(text) => {
+                        setConfirmPassword(text);
+                        setError(null);
+                      }}
+                      secureTextEntry={secureConfirmPassword}
+                      editable={!isLoading}
+                    />
+                    <TouchableOpacity 
+                      style={styles.eyeButton}
+                      onPress={() => setSecureConfirmPassword(prev => !prev)}
+                    >
+                      <Ionicons 
+                        name={secureConfirmPassword ? "eye-off-outline" : "eye-outline"} 
+                        size={22} 
+                        color={colors.textSecondary} 
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
 
                 <TouchableOpacity 
@@ -193,6 +219,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: 14,
     marginTop: spacing.xs,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: borderRadius.md,
+    marginTop: spacing.xs,
+  },
+  inputField: {
+    flex: 1,
+    ...typography.body,
+    paddingLeft: spacing.md,
+    paddingRight: spacing.sm,
+    paddingVertical: 14,
+  },
+  eyeButton: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   registerButton: {
     paddingVertical: 16,

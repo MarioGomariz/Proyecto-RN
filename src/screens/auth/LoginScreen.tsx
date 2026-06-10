@@ -26,6 +26,7 @@ export default function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [securePassword, setSecurePassword] = useState(true);
   
   const [alertConfig, setAlertConfig] = useState({
     visible: false,
@@ -109,17 +110,32 @@ export default function LoginScreen({ navigation }: any) {
                     keyboardType="email-address"
                   />
                   
-                  <TextInput
-                    style={[
-                      styles.input, 
-                      { backgroundColor: colors.surface, color: colors.text, borderColor: colors.border }
-                    ]}
-                    placeholder="Contraseña"
-                    placeholderTextColor={colors.textDisabled}
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry
-                  />
+                  <View style={[
+                    styles.inputContainer, 
+                    { backgroundColor: colors.surface, borderColor: colors.border }
+                  ]}>
+                    <TextInput
+                      style={[
+                        styles.inputField, 
+                        { color: colors.text }
+                      ]}
+                      placeholder="Contraseña"
+                      placeholderTextColor={colors.textDisabled}
+                      value={password}
+                      onChangeText={setPassword}
+                      secureTextEntry={securePassword}
+                    />
+                    <TouchableOpacity 
+                      style={styles.eyeButton} 
+                      onPress={() => setSecurePassword(prev => !prev)}
+                    >
+                      <Ionicons 
+                        name={securePassword ? "eye-off-outline" : "eye-outline"} 
+                        size={22} 
+                        color={colors.textSecondary} 
+                      />
+                    </TouchableOpacity>
+                  </View>
 
                   <TouchableOpacity 
                     style={[styles.button, { backgroundColor: colors.primary }]}
@@ -176,6 +192,25 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderRadius: borderRadius.md,
     borderWidth: 1,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+  },
+  inputField: {
+    flex: 1,
+    ...typography.body,
+    paddingLeft: spacing.md,
+    paddingRight: spacing.sm,
+    paddingVertical: 14,
+  },
+  eyeButton: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   button: {
     marginTop: spacing.sm,
