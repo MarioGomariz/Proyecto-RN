@@ -39,7 +39,7 @@ Aplicación móvil desarrollada en **React Native (Expo)** para la gestión comp
    ```bash
    npm install
    ```
-3. Configurar variables de entorno: Crear un archivo `.env` en la raíz copiando `.env.example` (si aplica) e insertando las credenciales `EXPO_PUBLIC_SUPABASE_URL` y `EXPO_PUBLIC_SUPABASE_ANON_KEY`.
+3. Configurar variables de entorno: Crear un archivo `.env` en la raíz copiando `.env.example` e insertando las credenciales `EXPO_PUBLIC_SUPABASE_URL` y `EXPO_PUBLIC_SUPABASE_ANON_KEY`.
 4. Iniciar el servidor local:
    ```bash
    npx expo start --clear
