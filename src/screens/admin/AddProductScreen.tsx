@@ -53,6 +53,10 @@ export default function AddProductScreen({ navigation }: any) {
       };
 
       await productService.createProduct(data);
+      setNombre('');
+      setDescripcion('');
+      setTag('');
+      setStockInicial('');
       showAlert(
         'Éxito', 
         'Producto registrado correctamente', 

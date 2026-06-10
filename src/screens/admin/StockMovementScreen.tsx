@@ -69,6 +69,8 @@ export default function StockMovementScreen({ route, navigation }: any) {
     setIsSubmitting(true);
     try {
       await productService.registerMovement(selectedProductId, tipoMovimiento, qty, observaciones);
+      setCantidad('');
+      setObservaciones('');
       showAlert(
         'Éxito', 
         `Se registró el ${tipoMovimiento} de ${qty} unidades correctamente.`, 
