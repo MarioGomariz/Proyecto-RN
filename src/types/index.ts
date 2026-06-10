@@ -1,10 +1,5 @@
-// ============================================================
-// Tipos globales del proyecto
-// ============================================================
-
 export type Theme = 'light' | 'dark';
 
-// Item genérico para listas — se especializa según el dominio de la app
 export interface Item {
   id: string;
   title: string;

@@ -48,7 +48,6 @@ export default function RegisterScreen({ navigation }: any) {
     
     try {
       await authService.signUp(email, password);
-      // Tras un registro exitoso, navegamos de vuelta
       navigation.goBack();
     } catch (err: any) {
       setError(err.message || 'Ocurrió un error al registrarse');

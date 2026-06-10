@@ -8,9 +8,7 @@ export interface NewProductData {
 }
 
 export const productService = {
-  /**
-   * Crea un nuevo producto.
-   */
+
   async createProduct(data: NewProductData) {
     const { data: { user } } = await supabase.auth.getUser();
 
@@ -32,9 +30,6 @@ export const productService = {
     return result;
   },
 
-  /**
-   * Obtiene todos los productos del usuario logueado, ordenados por los más recientes.
-   */
   async getProducts() {
     const { data: { user } } = await supabase.auth.getUser();
 
@@ -53,9 +48,6 @@ export const productService = {
     return data;
   },
 
-  /**
-   * Obtiene un producto específico por ID, validando que pertenezca al usuario.
-   */
   async getProductById(id: string) {
     const { data: { user } } = await supabase.auth.getUser();
 
@@ -74,10 +66,6 @@ export const productService = {
     return data;
   },
 
-  /**
-   * Registra un movimiento de stock (ingreso o egreso).
-   * El trigger en la base de datos actualizará el stock_actual del producto automáticamente.
-   */
   async registerMovement(productoId: string, tipo: 'ingreso' | 'egreso', cantidad: number, observaciones?: string) {
     const { data: { user } } = await supabase.auth.getUser();
 
@@ -99,9 +87,6 @@ export const productService = {
     return result;
   },
 
-  /**
-   * Obtiene el historial de movimientos de un producto.
-   */
   async getProductHistory(productoId: string) {
     const { data: { user } } = await supabase.auth.getUser();
 

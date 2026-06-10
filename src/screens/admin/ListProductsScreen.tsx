@@ -31,7 +31,6 @@ export default function ListProductsScreen({ navigation }: any) {
     }
   };
 
-  // Obtener tags únicos
   const uniqueTags = Array.from(new Set(products.map(p => p.tag).filter(Boolean)));
 
   const filteredProducts = products.filter(p => {
@@ -102,7 +101,6 @@ export default function ListProductsScreen({ navigation }: any) {
           />
         </View>
 
-        {/* Tags Filter */}
         {uniqueTags.length > 0 && (
           <View style={styles.tagsContainer}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: spacing.md, gap: 8 }}>
@@ -134,7 +132,6 @@ export default function ListProductsScreen({ navigation }: any) {
           </View>
         )}
 
-        {/* List Content */}
         <View style={styles.content}>
           {isLoading ? (
             <ActivityIndicator size="large" color={colors.primary} style={{ marginTop: spacing.xl }} />

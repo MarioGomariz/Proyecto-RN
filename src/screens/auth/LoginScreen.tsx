@@ -39,7 +39,6 @@ export default function LoginScreen({ navigation }: any) {
     setIsLoading(true);
     try {
       await authService.signIn(email, password);
-      // Tras el login exitoso, volvemos a la pantalla anterior (HomeScreen Admin)
       navigation.goBack();
     } catch (error: any) {
       setAlertConfig({

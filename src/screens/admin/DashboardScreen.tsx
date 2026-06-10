@@ -31,7 +31,6 @@ export default function DashboardScreen({ navigation }: any) {
     <AnimatedScreen>
       <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]}>
         
-        {/* Header admin */}
         <View style={[styles.header, { borderBottomColor: colors.border, backgroundColor: colors.background }]}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.sm }}>
             <TouchableOpacity onPress={() => navigation.openDrawer()} style={styles.menuButton}>
@@ -62,7 +61,6 @@ export default function DashboardScreen({ navigation }: any) {
                 key={item.label}
                 style={[styles.dashboardCard, { backgroundColor: colors.card, borderColor: colors.border }]}
                 onPress={() => {
-                  // Si tiene params, se pasan dentro de un objeto screen o directamente si es a nivel root
                   if (item.route.endsWith('Tab')) {
                     navigation.navigate('Inventario', {
                       screen: item.route,

@@ -24,7 +24,7 @@ export default function ProfileScreen({ navigation }: any) {
     <AnimatedScreen>
       <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]}>
         
-        {/* Header simple con botón de menú del Drawer */}
+
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
           <TouchableOpacity onPress={() => navigation.openDrawer()} style={styles.menuButton}>
             <Ionicons name="menu-outline" size={24} color={colors.text} />
@@ -33,15 +33,13 @@ export default function ProfileScreen({ navigation }: any) {
           <View style={{ width: 40 }} />
         </View>
 
-        <View style={styles.content}>
-          {/* Avatar / Inicial del Nombre */}
+        <View style={styles.content}>          
           <View style={[styles.avatarContainer, { backgroundColor: colors.primary + '18' }]}>
             <Text style={[styles.avatarText, { color: colors.primary }]}>
               {user?.email?.[0].toUpperCase() || 'A'}
             </Text>
           </View>
 
-          {/* Información del usuario */}
           <View style={[styles.infoCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
             <View style={styles.infoRow}>
               <Ionicons name="person-outline" size={20} color={colors.textSecondary} />
@@ -74,7 +72,6 @@ export default function ProfileScreen({ navigation }: any) {
             </View>
           </View>
 
-          {/* Preferencias */}
           <Text style={[typography.heading3, { color: colors.text, marginTop: spacing.xl, marginBottom: spacing.sm }]}>
             Preferencias
           </Text>
@@ -91,7 +88,6 @@ export default function ProfileScreen({ navigation }: any) {
             </View>
           </View>
 
-          {/* Botón Cerrar Sesión */}
           <TouchableOpacity
             style={[styles.logoutButton, { backgroundColor: '#e74c3c' }]}
             onPress={handleLogout}

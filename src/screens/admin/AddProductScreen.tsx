@@ -104,7 +104,6 @@ export default function AddProductScreen({ navigation }: any) {
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
           <View style={[styles.formContainer, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             
-            {/* Nombre */}
             <View style={styles.inputGroup}>
               <Text style={[typography.label, { color: colors.text }]}>Nombre del Producto *</Text>
               <TextInput
@@ -116,7 +115,6 @@ export default function AddProductScreen({ navigation }: any) {
               />
             </View>
 
-            {/* Tag */}
             <View style={styles.inputGroup}>
               <Text style={[typography.label, { color: colors.text }]}>Categoría / Tag *</Text>
               <TextInput
@@ -128,7 +126,6 @@ export default function AddProductScreen({ navigation }: any) {
               />
             </View>
 
-            {/* Stock Inicial */}
             <View style={styles.inputGroup}>
               <Text style={[typography.label, { color: colors.text }]}>Stock Inicial *</Text>
               <TextInput
@@ -141,7 +138,6 @@ export default function AddProductScreen({ navigation }: any) {
               />
             </View>
 
-            {/* Descripción */}
             <View style={styles.inputGroup}>
               <Text style={[typography.label, { color: colors.text }]}>Descripción (Opcional)</Text>
               <TextInput

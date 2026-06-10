@@ -14,7 +14,7 @@ interface CustomAlertProps {
   title: string;
   message: string;
   buttons?: AlertButton[];
-  onClose?: () => void; // Called when background is pressed or a default 'OK' button is pressed
+  onClose?: () => void; 
   type?: 'success' | 'error' | 'info';
 }
 
@@ -28,7 +28,6 @@ export default function CustomAlert({
 }: CustomAlertProps) {
   const { colors } = useTheme();
 
-  // Si no hay botones definidos, creamos un botón "OK" por defecto
   const renderButtons = buttons && buttons.length > 0 
     ? buttons 
     : [{ text: 'OK', onPress: onClose }];
@@ -44,7 +43,7 @@ export default function CustomAlert({
 
   const getIconColor = () => {
     switch(type) {
-      case 'success': return colors.primary; // Or a specific success color
+      case 'success': return colors.primary; 
       case 'error': return colors.error;
       case 'info':
       default: return colors.primary;

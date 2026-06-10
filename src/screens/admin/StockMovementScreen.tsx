@@ -11,7 +11,7 @@ import CustomAlert, { AlertButton } from '../../components/CustomAlert';
 
 export default function StockMovementScreen({ route, navigation }: any) {
   const { colors, isDark } = useTheme();
-  const { defaultTipo } = route.params || {}; // 'ingreso' o 'egreso'
+  const { defaultTipo } = route.params || {};
   
   const [tipoMovimiento, setTipoMovimiento] = useState<'ingreso' | 'egreso'>(defaultTipo || 'ingreso');
   const [productos, setProductos] = useState<any[]>([]);
@@ -127,7 +127,7 @@ export default function StockMovementScreen({ route, navigation }: any) {
 
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
           
-          {/* Selector de Tipo */}
+
           <View style={styles.typeSelector}>
             <TouchableOpacity 
               style={[
@@ -154,7 +154,7 @@ export default function StockMovementScreen({ route, navigation }: any) {
 
           <View style={[styles.formContainer, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             
-            {/* Producto */}
+
             <View style={styles.inputGroup}>
               <Text style={[typography.label, { color: colors.text }]}>Seleccionar Producto *</Text>
               <View style={[styles.pickerContainer, { borderColor: colors.border, backgroundColor: colors.background }]}>
@@ -180,7 +180,7 @@ export default function StockMovementScreen({ route, navigation }: any) {
               </View>
             </View>
 
-            {/* Cantidad */}
+
             <View style={styles.inputGroup}>
               <Text style={[typography.label, { color: colors.text }]}>Cantidad a mover *</Text>
               <TextInput
@@ -193,7 +193,6 @@ export default function StockMovementScreen({ route, navigation }: any) {
               />
             </View>
 
-            {/* Observaciones */}
             <View style={styles.inputGroup}>
               <Text style={[typography.label, { color: colors.text }]}>Observaciones (Opcional)</Text>
               <TextInput
