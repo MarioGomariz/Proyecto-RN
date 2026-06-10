@@ -1,5 +1,16 @@
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, ActivityIndicator } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  TextInput, 
+  TouchableOpacity, 
+  View, 
+  ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../context/ThemeContext';
@@ -62,61 +73,70 @@ export default function LoginScreen({ navigation }: any) {
         onClose={closeAlert}
       />
       <SafeAreaView style={styles.safe}>
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-            <Ionicons name="arrow-back" size={24} color={colors.text} />
-          </TouchableOpacity>
-          <ThemeToggle />
-        </View>
+        <KeyboardAvoidingView 
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.container}
+        >
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.inner}>
+              <View style={styles.header}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                  <Ionicons name="arrow-back" size={24} color={colors.text} />
+                </TouchableOpacity>
+                <ThemeToggle />
+              </View>
 
-        <View style={styles.content}>
-          <Text style={[typography.heading1, { color: colors.text, marginBottom: spacing.sm }]}>
-            Bienvenido
-          </Text>
-          <Text style={[typography.body, { color: colors.textSecondary, marginBottom: spacing.xl }]}>
-            Iniciá sesión para continuar
-          </Text>
+              <View style={styles.content}>
+                <Text style={[typography.heading1, { color: colors.text, marginBottom: spacing.sm }]}>
+                  Bienvenido
+                </Text>
+                <Text style={[typography.body, { color: colors.textSecondary, marginBottom: spacing.xl }]}>
+                  Iniciá sesión para continuar
+                </Text>
 
-          {/* Formulario */}
-          <View style={styles.formContainer}>
-            <TextInput
-              style={[
-                styles.input, 
-                { backgroundColor: colors.surface, color: colors.text, borderColor: colors.border }
-              ]}
-              placeholder="Email"
-              placeholderTextColor={colors.textDisabled}
-              value={email}
-              onChangeText={setEmail}
-              autoCapitalize="none"
-              keyboardType="email-address"
-            />
-            
-            <TextInput
-              style={[
-                styles.input, 
-                { backgroundColor: colors.surface, color: colors.text, borderColor: colors.border }
-              ]}
-              placeholder="Contraseña"
-              placeholderTextColor={colors.textDisabled}
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-            />
+                
+                <View style={styles.formContainer}>
+                  <TextInput
+                    style={[
+                      styles.input, 
+                      { backgroundColor: colors.surface, color: colors.text, borderColor: colors.border }
+                    ]}
+                    placeholder="Email"
+                    placeholderTextColor={colors.textDisabled}
+                    value={email}
+                    onChangeText={setEmail}
+                    autoCapitalize="none"
+                    keyboardType="email-address"
+                  />
+                  
+                  <TextInput
+                    style={[
+                      styles.input, 
+                      { backgroundColor: colors.surface, color: colors.text, borderColor: colors.border }
+                    ]}
+                    placeholder="Contraseña"
+                    placeholderTextColor={colors.textDisabled}
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry
+                  />
 
-            <TouchableOpacity 
-              style={[styles.button, { backgroundColor: colors.primary }]}
-              onPress={handleLogin}
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <ActivityIndicator color="#fff" />
-              ) : (
-                <Text style={styles.buttonText}>Iniciar Sesión</Text>
-              )}
-            </TouchableOpacity>
-          </View>
-        </View>
+                  <TouchableOpacity 
+                    style={[styles.button, { backgroundColor: colors.primary }]}
+                    onPress={handleLogin}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <ActivityIndicator color="#fff" />
+                    ) : (
+                      <Text style={styles.buttonText}>Iniciar Sesión</Text>
+                    )}
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </AnimatedScreen>
   );
@@ -124,6 +144,12 @@ export default function LoginScreen({ navigation }: any) {
 
 const styles = StyleSheet.create({
   safe: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+  },
+  inner: {
     flex: 1,
   },
   header: {
