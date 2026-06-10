@@ -16,18 +16,24 @@ export default function ListProductsScreen({ navigation }: any) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchProducts(true);
 
-  const fetchProducts = async () => {
-    setIsLoading(true);
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchProducts(false);
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  const fetchProducts = async (showLoading = true) => {
+    if (showLoading) setIsLoading(true);
     try {
       const data = await productService.getProducts();
       setProducts(data || []);
     } catch (error) {
       console.error('Error fetching products', error);
     } finally {
-      setIsLoading(false);
+      if (showLoading) setIsLoading(false);
     }
   };
 

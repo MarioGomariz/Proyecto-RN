@@ -31,14 +31,21 @@ export default function ProductDetailScreen({ route, navigation }: any) {
 
   useEffect(() => {
     if (productId) {
-      loadData();
+      loadData(true);
+      
+      const unsubscribe = navigation.addListener('focus', () => {
+        loadData(false);
+      });
+      
+      return unsubscribe;
     } else {
       setIsLoading(false);
       showAlert('Error', 'No se proporcionó un ID de producto válido', 'error', [{ text: 'Volver', onPress: () => navigation.goBack() }]);
     }
-  }, [productId]);
+  }, [productId, navigation]);
 
-  const loadData = async () => {
+  const loadData = async (showLoading = true) => {
+    if (showLoading) setIsLoading(true);
     try {
       const [prodData, histData] = await Promise.all([
         productService.getProductById(productId),
@@ -49,7 +56,7 @@ export default function ProductDetailScreen({ route, navigation }: any) {
     } catch (error) {
       showAlert('Error', 'No se pudo cargar la información del producto', 'error', [{ text: 'Volver', onPress: () => navigation.goBack() }]);
     } finally {
-      setIsLoading(false);
+      if (showLoading) setIsLoading(false);
     }
   };
 
