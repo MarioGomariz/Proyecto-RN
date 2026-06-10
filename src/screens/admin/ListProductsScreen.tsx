@@ -68,17 +68,11 @@ export default function ListProductsScreen({ navigation }: any) {
       <SafeAreaView style={styles.safe}>
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
           <TouchableOpacity 
-            onPress={() => {
-              if (navigation.canGoBack()) {
-                navigation.goBack();
-              } else if (typeof navigation.openDrawer === 'function') {
-                navigation.openDrawer();
-              }
-            }} 
+            onPress={() => {navigation.openDrawer();}} 
             style={styles.backButton}
           >
             <Ionicons 
-              name={navigation.canGoBack() ? "arrow-back" : "menu-outline"} 
+              name={"menu-outline"} 
               size={24} 
               color={colors.text} 
             />

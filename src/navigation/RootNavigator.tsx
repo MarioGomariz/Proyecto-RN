@@ -93,6 +93,14 @@ function MainDrawer() {
         }}
       />
       <Drawer.Screen
+        name="Agregar Producto"
+        component={AddProductScreen}
+        options={{
+          title: 'Agregar Producto',
+          drawerIcon: ({ color, size }) => <Ionicons name="add-circle-outline" color={color} size={size} />,
+        }}
+      />
+      <Drawer.Screen
         name="Inventario"
         component={InventarioTabs}
         options={{

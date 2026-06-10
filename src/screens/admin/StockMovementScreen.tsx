@@ -104,17 +104,11 @@ export default function StockMovementScreen({ route, navigation }: any) {
       <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]}>
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
           <TouchableOpacity 
-            onPress={() => {
-              if (navigation.canGoBack()) {
-                navigation.goBack();
-              } else if (typeof navigation.openDrawer === 'function') {
-                navigation.openDrawer();
-              }
-            }} 
+            onPress={() => {navigation.openDrawer();}} 
             style={styles.backButton}
           >
             <Ionicons 
-              name={navigation.canGoBack() ? "arrow-back" : "menu-outline"} 
+              name={"menu-outline"} 
               size={24} 
               color={colors.text} 
             />

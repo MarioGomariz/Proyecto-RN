@@ -61,15 +61,6 @@ export default function ProfileScreen({ navigation }: any) {
               </View>
             </View>
 
-            <View style={styles.divider} />
-
-            <View style={styles.infoRow}>
-              <Ionicons name="key-outline" size={20} color={colors.textSecondary} />
-              <View style={styles.infoTextWrapper}>
-                <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>Rol</Text>
-                <Text style={[styles.infoValue, { color: colors.text }]}>Administrador de Inventario</Text>
-              </View>
-            </View>
           </View>
 
           <Text style={[typography.heading3, { color: colors.text, marginTop: spacing.xl, marginBottom: spacing.sm }]}>
